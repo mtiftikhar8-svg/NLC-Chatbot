@@ -10,12 +10,18 @@ from langchain_pinecone import PineconeVectorStore
 from pypdf import PdfReader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 
+
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
 # -------------------- LOAD ENV --------------------
 load_dotenv()
-# PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-PINECONE_API_KEY = "pcsk_36TGS1_x83mAd6HWmfjjrV9Fvpst24QshCbfjGPSfPYRNWLeYcPEaeYxwEaTt7HWRaHLw"
-GOOGLE_API_KEY = "AIzaSyDcxxlf_SAuxgVWn8rR4AL3oM8mYF5sQI4"
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# PINECONE_API_KEY = "pcsk_36TGS1_x83mAd6HWmfjjrV9Fvpst24QshCbfjGPSfPYRNWLeYcPEaeYxwEaTt7HWRaHLw"
+# GOOGLE_API_KEY = "AIzaSyDcxxlf_SAuxgVWn8rR4AL3oM8mYF5sQI4"
 
 # -------------------- STREAMLIT PAGE CONFIG --------------------
 st.set_page_config(page_title="💎 Gorgeous RAG (Gemini + Pinecone)", page_icon="💎")
@@ -58,7 +64,14 @@ def insert_text_to_pinecone(text):
     vector_store.add_documents(docs)
 
 def search_and_answer(query):
-    ensure_event_loop()
+
+    import asyncio
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+
+    # ensure_event_loop()
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/text-embedding-004",
         google_api_key=GOOGLE_API_KEY
