@@ -12,8 +12,10 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 
 # -------------------- LOAD ENV --------------------
 load_dotenv()
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+PINECONE_API_KEY = "pcsk_36TGS1_x83mAd6HWmfjjrV9Fvpst24QshCbfjGPSfPYRNWLeYcPEaeYxwEaTt7HWRaHLw"
+GOOGLE_API_KEY = "AIzaSyDcxxlf_SAuxgVWn8rR4AL3oM8mYF5sQI4"
 
 # -------------------- STREAMLIT PAGE CONFIG --------------------
 st.set_page_config(page_title="💎 Gorgeous RAG (Gemini + Pinecone)", page_icon="💎")
