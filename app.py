@@ -24,7 +24,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 # GOOGLE_API_KEY = "AIzaSyDcxxlf_SAuxgVWn8rR4AL3oM8mYF5sQI4"
 
 # -------------------- STREAMLIT PAGE CONFIG --------------------
-st.set_page_config(page_title="💎 Gorgeous RAG (Gemini + Pinecone)", page_icon="💎")
+st.set_page_config(page_title="💎 NLC ChatBot", page_icon="💎")
 st.title("💎 NLC ChatBot")
 st.write("Upload PDFs and query to our CHatbot.")
 
