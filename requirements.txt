@@ -1,0 +1,6 @@
+python-dotenv
+pinecone-client
+langchain
+langchain-google-genai
+langchain-pinecone
+spacy
