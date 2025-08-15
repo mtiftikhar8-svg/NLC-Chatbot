@@ -28,6 +28,23 @@ st.set_page_config(page_title="💎 Gorgeous RAG (Gemini + Pinecone)", page_icon
 st.title("💎 NLC ChatBot")
 st.write("Upload PDFs and query to our CHatbot.")
 
+
+
+
+def clear_pinecone_index():
+    pc.delete_index(INDEX_NAME)
+    pc.create_index(
+        name=INDEX_NAME,
+        dimension=768,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+    )
+
+
+
+
+
+
 # -------------------- WINDOWS ASYNC FIX --------------------
 def ensure_event_loop():
     """Fix for 'no running event loop' error in Streamlit on Windows."""
@@ -140,6 +157,7 @@ uploaded_files = st.file_uploader("📄 Upload PDF(s)", type=["pdf"], accept_mul
 
 if st.button("Insert Data"):
     with st.spinner("📥 Inserting PDFs into Pinecone... Please wait."):
+        clear_pinecone_index()  # Purana saara data hatao
         if uploaded_files:
             for file in uploaded_files:
                 pdf_reader = PdfReader(file)
